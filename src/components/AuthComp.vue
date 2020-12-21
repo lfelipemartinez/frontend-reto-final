@@ -9,6 +9,7 @@
       <v-btn
       icon
       class="mr-5"
+      @click="salir()"
       >
       <v-icon>mdi-logout</v-icon>
       </v-btn>
@@ -104,5 +105,13 @@ export default {
       ['Usuarios', 'mdi-account-multiple-outline', 'Usuario'],
     ],
   }),
+  created(){
+    this.$store.dispatch('autoLogin')
+  },
+  methods:{
+    salir(){
+      this.$store.dispatch('out');
+    }
+  }
 };
 </script>

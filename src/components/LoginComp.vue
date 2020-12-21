@@ -87,6 +87,7 @@
 
 <script>
 import swal from "sweetalert";
+import VueJwtDecode from 'vue-jwt-decode';
 import axios from 'axios';
 export default {
     name: 'LoginComp',
@@ -106,8 +107,10 @@ export default {
             return response.data;
         })
         .then(data => {
-            console.log(data)
+            this.$store.dispatch('saveToken', data.tokenReturn)
+            this.$router.push({path: '/authv'})
             swal("Exitoso", "login exitoso", "success");
+            console.log(data)
             
         })
         .catch( error => {

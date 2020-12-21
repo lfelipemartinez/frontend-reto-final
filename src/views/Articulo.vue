@@ -5,6 +5,7 @@
 <script>
 import DataTableArticulos from '../components/DataTableArticulos.vue'
 export default {
+    name: 'Articulo',
     components:{
         DataTableArticulos
     }

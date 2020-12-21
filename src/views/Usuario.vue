@@ -5,6 +5,7 @@
 <script>
 import DataTableUsuario from '../components/DataTableUsuario.vue';
 export default {
+    name: 'Usuario',
     components:{
         DataTableUsuario
     }
