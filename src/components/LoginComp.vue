@@ -99,6 +99,9 @@ export default {
       },
     };
   },
+  created(){
+    this.$store.dispatch('autoLogin')? this.$router.push({path: '/authv'}) : this.$router.push({path: '/login'});
+  },
   methods: {
         loginUser() {
         axios

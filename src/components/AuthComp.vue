@@ -58,6 +58,7 @@
           </v-list-group>
   
           <v-list-group
+          v-if="this.$store.state.user.rol === 'Administrador'"
              :value="false"
              prepend-icon="mdi-book-cog"
           >

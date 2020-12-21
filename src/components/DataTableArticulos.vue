@@ -209,7 +209,9 @@ name: 'DataTableArticulos',
     },
     categoriaList() {
       axios
-        .get("http://localhost:3000/api/categoria/list")
+        .get("http://localhost:3000/api/categoria/list", {headers: {
+          token: this.$store.state.token
+        }})
         .then((response) => {
           this.categorias = response.data;
         })
@@ -235,7 +237,9 @@ name: 'DataTableArticulos',
         axios
           .put("http://localhost:3000/api/articulo/deactivate", {
             "id": this.editedItem.id,
-          })
+          }, {headers: {
+          token: this.$store.state.token
+        }})
           .then((response) => {
             this.list();
           })
@@ -246,7 +250,9 @@ name: 'DataTableArticulos',
         axios
           .put("http://localhost:3000/api/articulo/activate", {
             "id": this.editedItem.id,
-          })
+          }, {headers: {
+          token: this.$store.state.token
+        }})
           .then((response) => {
             this.list();
           })
@@ -281,7 +287,9 @@ name: 'DataTableArticulos',
             categoriaId: this.editedItem.categoria,
             nombre: this.editedItem.nombre,
             descripcion: this.editedItem.descripcion,
-          })
+          }, {headers: {
+          token: this.$store.state.token
+        }})
           .then((response) => {
             this.list();
           })
@@ -297,7 +305,9 @@ name: 'DataTableArticulos',
             nombre: this.editedItem.nombre,
             descripcion: this.editedItem.descripcion,
             estado: 1,
-          })
+          }, {headers: {
+          token: this.$store.state.token
+        }})
           .then((response) => {
             this.list();
           })

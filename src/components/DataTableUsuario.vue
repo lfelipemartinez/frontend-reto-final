@@ -171,7 +171,9 @@ export default {
   methods: {
     list() {
       axios
-        .get("http://localhost:3000/api/usuario/list")
+        .get("http://localhost:3000/api/usuario/list", {headers: {
+          token: this.$store.state.token
+        }})
         .then((response) => {
           this.usuarios = response.data;
           console.log(this.usuarios)
@@ -199,7 +201,9 @@ export default {
         axios
           .put("http://localhost:3000/api/usuario/deactivate", {
             id: this.editedItem.id,
-          })
+          }, {headers: {
+          token: this.$store.state.token
+        }})
           .then((response) => {
             this.list();
           })
@@ -210,7 +214,9 @@ export default {
         axios
           .put("http://localhost:3000/api/usuario/activate", {
             id: this.editedItem.id,
-          })
+          }, {headers: {
+          token: this.$store.state.token
+        }})
           .then((response) => {
             this.list();
           })
@@ -240,11 +246,12 @@ export default {
       if (this.editedId > -1) {
         axios
           .put("http://localhost:3000/api/usuario/update", {
-            id: this.editedItem.id,
             nombre: this.editedItem.nombre,
             rol: this.editedItem.rol,
             email: this.editItem.email,
-          })
+          }, {headers: {
+          token: this.$store.state.token
+        }})
           .then((response) => {
             this.list();
           })
@@ -258,7 +265,9 @@ export default {
             nombre: this.editedItem.nombre,
             rol: this.editedItem.rol,
             email: this.editItem.email,
-          })
+          }, {headers: {
+          token: this.$store.state.token
+        }})
           .then((response) => {
             this.list();
           })
