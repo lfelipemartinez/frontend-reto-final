@@ -11,7 +11,7 @@
         <v-spacer></v-spacer>
 
         <v-toolbar-items class="hidden-sm-and-down">
-          <template>
+          <template v-if="!this.$store.state.user">
             <v-btn text :to="{ name: 'Login' }">
               <v-icon>
                 mdi-account
@@ -20,11 +20,17 @@
 
             <v-divider vertical></v-divider>
           </template>
-          <template>
+          <template v-else>
             <v-btn text :to="{ name: 'AuthV' }">
               <v-icon>
                 mdi-application-cog
               </v-icon>
+            </v-btn>
+            <v-divider vertical></v-divider>
+          </template>
+          <template v-if="this.$store.state.user">
+            <v-btn icon class="mr-5" @click="salir()">
+              <v-icon>mdi-logout</v-icon>
             </v-btn>
             <v-divider vertical></v-divider>
           </template>
@@ -156,7 +162,7 @@
 
 <script>
 export default {
-  name: 'Inicio',
+  name: "Inicio",
   data() {
     return {
       elevations: [6, 12, 18],
@@ -178,5 +184,10 @@ export default {
       ],
     };
   },
+  methods:{
+    salir(){
+      this.$store.dispatch('out');
+    }
+  }
 };
 </script>
