@@ -1,42 +1,6 @@
 <template>
-  <v-app id="inspire">
-    <v-app-bar app color="white" flat class="primary">
-      <v-container class="py-0 fill-height">
-        <v-btn text :to="{ name: 'Home' }">
-          Inicio
-        </v-btn>
-
-        <v-divider class="mx-4" vertical></v-divider>
-
-        <v-spacer></v-spacer>
-
-        <v-toolbar-items class="hidden-sm-and-down">
-          <template v-if="!this.$store.state.user">
-            <v-btn text :to="{ name: 'Login' }">
-              <v-icon>
-                mdi-account
-              </v-icon>
-            </v-btn>
-
-            <v-divider vertical></v-divider>
-          </template>
-          <template v-else>
-            <v-btn text :to="{ name: 'AuthV' }">
-              <v-icon>
-                mdi-application-cog
-              </v-icon>
-            </v-btn>
-            <v-divider vertical></v-divider>
-          </template>
-          <template v-if="this.$store.state.user">
-            <v-btn icon class="mr-5" @click="salir()">
-              <v-icon>mdi-logout</v-icon>
-            </v-btn>
-            <v-divider vertical></v-divider>
-          </template>
-        </v-toolbar-items>
-      </v-container>
-    </v-app-bar>
+  <v-app id="inspire" class="">
+   <Header> </Header>
 
     <v-main class="grey lighten-3">
       <v-container>
@@ -68,25 +32,11 @@
                 </v-alert>
               </div>
               <div>
+                <!--Seccion de servicios-->
                 <v-container>
-                  <v-row justify="space-around">
-                    <v-col
-                      v-for="elevation in elevations"
-                      :key="elevation"
-                      cols="12"
-                      md="4"
-                    >
-                      <v-sheet class="pa-12" color="grey lighten-3">
-                        <v-sheet
-                          :elevation="elevation"
-                          class="mx-auto"
-                          height="100"
-                          width="100"
-                        ></v-sheet>
-                      </v-sheet>
-                    </v-col>
-                  </v-row>
+                  <service></service>
                 </v-container>
+                <!-- fin seccion de servicios-->
               </div>
               <div>
                 <v-card class="mx-auto" color="#26c6da" dark max-width="400">
@@ -131,27 +81,9 @@
                   </v-card-actions>
                 </v-card>
               </div>
-              <v-footer dark padless>
-                <v-card class="flex" flat tile>
-                  <v-card-title class="teal">
-                    <strong class="subheading"
-                      >Get connected with us on social networks!</strong
-                    >
-
-                    <v-spacer></v-spacer>
-
-                    <v-btn v-for="icon in icons" :key="icon" class="mx-4" icon>
-                      <v-icon size="24px">
-                        {{ icon }}
-                      </v-icon>
-                    </v-btn>
-                  </v-card-title>
-
-                  <v-card-text class="py-2 white--text text-center">
-                    {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
-                  </v-card-text>
-                </v-card>
-              </v-footer>
+              <!--seccion footer-->
+            <Footer> </Footer>
+            <!-- fin seccion footer-->
             </v-sheet>
           </v-col>
         </v-row>
@@ -161,12 +93,14 @@
 </template>
 
 <script>
+import Service from '../components/Service.vue'
+import Header from '../components/header.vue'
+import Footer from '../components/Footer.vue'
 export default {
   name: "Inicio",
   data() {
     return {
       elevations: [6, 12, 18],
-      icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
       items: [
         {
           src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
@@ -182,12 +116,19 @@ export default {
           src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
         },
       ],
+      services:''
     };
+  },
+  components:{
+    Service,
+    Header,
+    Footer
   },
   methods:{
     salir(){
       this.$store.dispatch('out');
-    }
+    },
+
   }
 };
 </script>
