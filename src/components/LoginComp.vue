@@ -44,43 +44,41 @@
           <v-col>
             <v-sheet min-height="70vh" rounded="lg">
               <v-layout>
-                  <v-flex>
-                <v-row
-                align="center"
-                align-content="center">
-                  <v-col>
-                    <v-card class="pa-12">
-                      <v-card-title>Login</v-card-title>
-                      <v-card-text>
-                        <v-form ref="form" lazy-validation>
-                          <v-text-field
-                            v-model="login.email"
-                            label="E-mail"
-                            required
-                          ></v-text-field>
-                          <v-text-field
-                            v-model="login.password"
-                            label="Contraseña"
-                            type="password"
-                            required
-                          ></v-text-field>
-                          <v-btn
-                            :disabled="
-                              !(this.login.password && this.login.email)
-                            "
-                            color="success"
-                            class="mr-4"
-                            @click="loginUser"
-                            block
-                          >
-                            Log in
-                          </v-btn>
-                        </v-form>
-                      </v-card-text>
-                      <v-card-actions></v-card-actions>
-                    </v-card>
-                  </v-col>
-                </v-row>
+                <v-flex>
+                  <v-row align="center" align-content="center">
+                    <v-col>
+                      <v-card class="pa-12">
+                        <v-card-title>Login</v-card-title>
+                        <v-card-text>
+                          <v-form ref="form" lazy-validation>
+                            <v-text-field
+                              v-model="login.email"
+                              label="E-mail"
+                              required
+                            ></v-text-field>
+                            <v-text-field
+                              v-model="login.password"
+                              label="Contraseña"
+                              type="password"
+                              required
+                            ></v-text-field>
+                            <v-btn
+                              :disabled="
+                                !(this.login.password && this.login.email)
+                              "
+                              color="success"
+                              class="mr-4"
+                              @click="loginUser"
+                              block
+                            >
+                              Log in
+                            </v-btn>
+                          </v-form>
+                        </v-card-text>
+                        <v-card-actions></v-card-actions>
+                      </v-card>
+                    </v-col>
+                  </v-row>
                 </v-flex>
               </v-layout>
             </v-sheet>
@@ -93,10 +91,10 @@
 
 <script>
 import swal from "sweetalert";
-import VueJwtDecode from 'vue-jwt-decode';
-import axios from 'axios';
+import VueJwtDecode from "vue-jwt-decode";
+import axios from "axios";
 export default {
-    name: 'LoginComp',
+  name: "LoginComp",
   data() {
     return {
       login: {
@@ -105,32 +103,33 @@ export default {
       },
     };
   },
-  created(){
-    this.$store.dispatch('autoLogin')? this.$router.push({path: '/authv'}) : this.$router.push({path: '/login'});
+  created() {
+    this.$store.dispatch("autoLogin")
+      ? this.$router.push({ path: "/authv" })
+      : this.$router.push({ path: "/login" });
   },
   methods: {
-        loginUser() {
-        axios
-        .post('http://localhost:3000/api/usuario/login', this.login)
-        .then(response => {
-            return response.data;
+    loginUser() {
+      axios
+        .post("http://localhost:3000/api/usuario/login", this.login)
+        .then((response) => {
+          return response.data;
         })
-        .then(data => {
-            this.$store.dispatch('saveToken', data.tokenReturn)
-            this.$router.push({path: '/authv'})
-            swal("Exitoso", "login exitoso", "success");
-            console.log(data)
-            
+        .then((data) => {
+          this.$store.dispatch("saveToken", data.tokenReturn);
+          this.$router.push({ path: "/authv" });
+          swal("Exitoso", "login exitoso", "success");
+          console.log(data);
         })
-        .catch( error => {
-            swal("Error", "datos incorrectos", "error");
-            console.log(error);
-            return error;
-        })
+        .catch((error) => {
+          swal("Error", "datos incorrectos", "error");
+          console.log(error);
+          return error;
+        });
     },
-    salir(){
-      this.$store.dispatch('out');
-    }
+    salir() {
+      this.$store.dispatch("out");
+    },
   },
 };
 </script>

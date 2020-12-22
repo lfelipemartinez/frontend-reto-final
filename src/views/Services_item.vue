@@ -13,7 +13,7 @@
 </template>
 <script>
 import Header from "../components/header.vue";
-import Footer from "../components/Footer.vue";
+import Footer from "../components/FooterV.vue";
 import Axios from "axios";
 export default {
   name: "Services_item",

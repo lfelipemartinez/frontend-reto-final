@@ -36,6 +36,12 @@
                     <v-row>
                       <v-col cols="12">
                         <v-text-field
+                          v-model="editedItem.id"
+                          label="ID"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12">
+                        <v-text-field
                           v-model="editedItem.nombre"
                           label="Nombre"
                         ></v-text-field>
@@ -52,7 +58,6 @@
                           label="Email"
                         ></v-text-field>
                       </v-col>
-                      
                     </v-row>
                   </v-container>
                 </v-card-text>
@@ -92,12 +97,12 @@
             mdi-pencil
           </v-icon>
           <v-icon medium @click="deleteItem(item)">
-           <template v-if="item.estado">
-             mdi-toggle-switch
-           </template>
-           <template v-else>
-             mdi-toggle-switch-off-outline
-           </template>
+            <template v-if="item.estado">
+              mdi-toggle-switch
+            </template>
+            <template v-else>
+              mdi-toggle-switch-off-outline
+            </template>
           </v-icon>
         </template>
         <template v-slot:no-data>
@@ -113,7 +118,7 @@
 <script>
 import axios from "axios";
 export default {
-  name: 'DataTableUsuario',
+  name: "DataTableUsuario",
   data: () => ({
     carga: true,
     dialog: false,
@@ -171,12 +176,14 @@ export default {
   methods: {
     list() {
       axios
-        .get("http://localhost:3000/api/usuario/list", {headers: {
-          token: this.$store.state.token
-        }})
+        .get("http://localhost:3000/api/usuario/list", {
+          headers: {
+            Token: this.$store.state.token,
+          },
+        })
         .then((response) => {
           this.usuarios = response.data;
-          console.log(this.usuarios)
+          console.log(this.usuarios);
           this.carga = false;
         })
         .catch((error) => {
@@ -199,11 +206,17 @@ export default {
     deleteItemConfirm() {
       if (this.editedItem.estado === 1) {
         axios
-          .put("http://localhost:3000/api/usuario/deactivate", {
-            id: this.editedItem.id,
-          }, {headers: {
-          token: this.$store.state.token
-        }})
+          .put(
+            "http://localhost:3000/api/usuario/deactivate",
+            {
+              id: this.editedItem.id,
+            },
+            {
+              headers: {
+                Token: this.$store.state.token,
+              },
+            }
+          )
           .then((response) => {
             this.list();
           })
@@ -212,11 +225,17 @@ export default {
           });
       } else {
         axios
-          .put("http://localhost:3000/api/usuario/activate", {
-            id: this.editedItem.id,
-          }, {headers: {
-          token: this.$store.state.token
-        }})
+          .put(
+            "http://localhost:3000/api/usuario/activate",
+            {
+              id: this.editedItem.id,
+            },
+            {
+              headers: {
+                Token: this.$store.state.token,
+              },
+            }
+          )
           .then((response) => {
             this.list();
           })
@@ -245,13 +264,20 @@ export default {
     save() {
       if (this.editedId > -1) {
         axios
-          .put("http://localhost:3000/api/usuario/update", {
-            nombre: this.editedItem.nombre,
-            rol: this.editedItem.rol,
-            email: this.editItem.email,
-          }, {headers: {
-          token: this.$store.state.token
-        }})
+          .put(
+            "http://localhost:3000/api/usuario/update",
+            {
+              id: this.editedItem.id,
+              nombre: this.editedItem.nombre,
+              rol: this.editedItem.rol,
+              email: this.editItem.email,
+            },
+            {
+              headers: {
+                Token: this.$store.state.token,
+              },
+            }
+          )
           .then((response) => {
             this.list();
           })
@@ -260,14 +286,21 @@ export default {
           });
       } else {
         axios
-          .post("http://localhost:3000/api/usuario/add", {
-            estado: 1,
-            nombre: this.editedItem.nombre,
-            rol: this.editedItem.rol,
-            email: this.editItem.email,
-          }, {headers: {
-          token: this.$store.state.token
-        }})
+          .post(
+            "http://localhost:3000/api/usuario/add",
+            {
+              id: this.editedItem.id,
+              estado: 1,
+              nombre: this.editedItem.nombre,
+              rol: this.editedItem.rol,
+              email: this.editItem.email,
+            },
+            {
+              headers: {
+                Token: this.$store.state.token,
+              },
+            }
+          )
           .then((response) => {
             this.list();
           })

@@ -1,14 +1,13 @@
 <template>
-    <inicio></inicio>
+  <inicio></inicio>
 </template>
 
 <script>
-import Inicio from '../components/Inicio.vue';
+import Inicio from "../components/Inicio.vue";
 export default {
-    name: 'Home',
-    components:{
-        Inicio
-    }
-
+  name: "Home",
+  components: {
+    Inicio,
+  },
 };
 </script>
