@@ -6,7 +6,7 @@
    <div class="infografia__inform pa-5">
      <div><img src="../assets/images/logo-text.png" alt="logo y texto"></div>
      <h2 class="infografia__titulo">Nuestro Valor</h2>
-     <p class="infografia__texto">Soluciones empresariales, para el crecimiento personal y colectivo de tu empresa, <strong>juntos somos mas</strong></p>
+     <p class="infografia__texto">Soluciones empresariales, para el crecimiento personal y colectivo de tu empresa, <strong>juntos somos mas.</strong></p>
    </div>
  </div>
 </template>
@@ -42,6 +42,7 @@ export default {};
   }
   .infografia__texto{
     font-size: 2rem;
+    font-weight: bold;
     max-width: 500px;
   }
 </style>
