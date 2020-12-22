@@ -36,6 +36,12 @@
                     <v-row>
                       <v-col cols="12">
                         <v-text-field
+                          v-model="editedItem.id"
+                          label="ID"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12">
+                        <v-text-field
                           v-model="editedItem.nombre"
                           label="Categoria"
                         ></v-text-field>
@@ -88,12 +94,12 @@
             mdi-pencil
           </v-icon>
           <v-icon medium @click="deleteItem(item)">
-           <template v-if="item.estado">
-             mdi-toggle-switch
-           </template>
-           <template v-else>
-             mdi-toggle-switch-off-outline
-           </template>
+            <template v-if="item.estado">
+              mdi-toggle-switch
+            </template>
+            <template v-else>
+              mdi-toggle-switch-off-outline
+            </template>
           </v-icon>
         </template>
         <template v-slot:no-data>
@@ -109,7 +115,7 @@
 <script>
 import axios from "axios";
 export default {
-  name: 'DataTableCategorias',
+  name: "DataTableCategorias",
   data: () => ({
     carga: true,
     dialog: false,
@@ -165,9 +171,11 @@ export default {
   methods: {
     list() {
       axios
-        .get("http://localhost:3000/api/categoria/list",{headers: {
-          token: this.$store.state.token
-        }})
+        .get("http://localhost:3000/api/categoria/list", {
+          headers: {
+            Token: this.$store.state.token,
+          },
+        })
         .then((response) => {
           this.categorias = response.data;
           this.carga = false;
@@ -192,11 +200,17 @@ export default {
     deleteItemConfirm() {
       if (this.editedItem.estado === 1) {
         axios
-          .put("http://localhost:3000/api/categoria/deactivate", {
-            id: this.editedItem.id,
-          }, {headers: {
-          token: this.$store.state.token
-        }})
+          .put(
+            "http://localhost:3000/api/categoria/deactivate",
+            {
+              id: this.editedItem.id,
+            },
+            {
+              headers: {
+                Token: this.$store.state.token,
+              },
+            }
+          )
           .then((response) => {
             this.list();
           })
@@ -205,11 +219,17 @@ export default {
           });
       } else {
         axios
-          .put("http://localhost:3000/api/categoria/activate", {
-            id: this.editedItem.id,
-          }, {headers: {
-          token: this.$store.state.token
-        }})
+          .put(
+            "http://localhost:3000/api/categoria/activate",
+            {
+              id: this.editedItem.id,
+            },
+            {
+              headers: {
+                Token: this.$store.state.token,
+              },
+            }
+          )
           .then((response) => {
             this.list();
           })
@@ -238,13 +258,19 @@ export default {
     save() {
       if (this.editedId > -1) {
         axios
-          .put("http://localhost:3000/api/categoria/update", {
-            id: this.editedItem.id,
-            nombre: this.editedItem.nombre,
-            descripcion: this.editedItem.descripcion,
-          }, {headers: {
-          token: this.$store.state.token
-        }})
+          .put(
+            "http://localhost:3000/api/categoria/update",
+            {
+              id: this.editedItem.id,
+              nombre: this.editedItem.nombre,
+              descripcion: this.editedItem.descripcion,
+            },
+            {
+              headers: {
+                Token: this.$store.state.token,
+              },
+            }
+          )
           .then((response) => {
             this.list();
           })
@@ -253,13 +279,20 @@ export default {
           });
       } else {
         axios
-          .post("http://localhost:3000/api/categoria/add", {
-            estado: 1,
-            nombre: this.editedItem.nombre,
-            descripcion: this.editedItem.descripcion,
-          }, {headers: {
-          token: this.$store.state.token
-        }})
+          .post(
+            "http://localhost:3000/api/categoria/add",
+            {
+              id: this.editedItem.id,
+              estado: 1,
+              nombre: this.editedItem.nombre,
+              descripcion: this.editedItem.descripcion,
+            },
+            {
+              headers: {
+                Token: this.$store.state.token,
+              },
+            }
+          )
           .then((response) => {
             this.list();
           })

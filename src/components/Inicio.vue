@@ -184,10 +184,10 @@ export default {
       ],
     };
   },
-  methods:{
-    salir(){
-      this.$store.dispatch('out');
-    }
-  }
+  methods: {
+    salir() {
+      this.$store.dispatch("out");
+    },
+  },
 };
 </script>

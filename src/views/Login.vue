@@ -1,11 +1,10 @@
 <template>
-    <login-comp></login-comp>
+  <login-comp></login-comp>
 </template>
 <script>
-import LoginComp from '../components/LoginComp.vue'
+import LoginComp from "../components/LoginComp.vue";
 export default {
-  name: 'Login',
+  name: "Login",
   components: { LoginComp },
-    
-}
+};
 </script>
