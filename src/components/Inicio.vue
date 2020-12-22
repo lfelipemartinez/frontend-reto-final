@@ -52,106 +52,10 @@
                   transition="fade-transition"
                 ></v-carousel-item>
               </v-carousel>
-
-              <div>
-                <v-alert
-                  border="left"
-                  colored-border
-                  color="deep-purple accent-4"
-                  elevation="2"
-                >
-                  Aliquam eu nunc. Fusce commodo aliquam arcu. In consectetuer
-                  turpis ut velit. Nulla facilisi.. Morbi mollis tellus ac
-                  sapien. Fusce vel dui. Praesent ut ligula non mi varius
-                  sagittis. Vivamus consectetuer hendrerit lacus. Suspendisse
-                  enim turpis, dictum sed, iaculis a, condimentum nec, nisi.
-                </v-alert>
-              </div>
-              <div>
-                <v-container>
-                  <v-row justify="space-around">
-                    <v-col
-                      v-for="elevation in elevations"
-                      :key="elevation"
-                      cols="12"
-                      md="4"
-                    >
-                      <v-sheet class="pa-12" color="grey lighten-3">
-                        <v-sheet
-                          :elevation="elevation"
-                          class="mx-auto"
-                          height="100"
-                          width="100"
-                        ></v-sheet>
-                      </v-sheet>
-                    </v-col>
-                  </v-row>
-                </v-container>
-              </div>
-              <div>
-                <v-card class="mx-auto" color="#26c6da" dark max-width="400">
-                  <v-card-title>
-                    <v-icon large left>
-                      mdi-twitter
-                    </v-icon>
-                    <span class="title font-weight-light">Twitter</span>
-                  </v-card-title>
-
-                  <v-card-text class="headline font-weight-bold">
-                    "Turns out semicolon-less style is easier and safer in TS
-                    because most gotcha edge cases are type invalid as well."
-                  </v-card-text>
-
-                  <v-card-actions>
-                    <v-list-item class="grow">
-                      <v-list-item-avatar color="grey darken-3">
-                        <v-img
-                          class="elevation-6"
-                          alt=""
-                          src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
-                        ></v-img>
-                      </v-list-item-avatar>
-
-                      <v-list-item-content>
-                        <v-list-item-title>Evan You</v-list-item-title>
-                      </v-list-item-content>
-
-                      <v-row align="center" justify="end">
-                        <v-icon class="mr-1">
-                          mdi-heart
-                        </v-icon>
-                        <span class="subheading mr-2">256</span>
-                        <span class="mr-1">·</span>
-                        <v-icon class="mr-1">
-                          mdi-share-variant
-                        </v-icon>
-                        <span class="subheading">45</span>
-                      </v-row>
-                    </v-list-item>
-                  </v-card-actions>
-                </v-card>
-              </div>
-              <v-footer dark padless>
-                <v-card class="flex" flat tile>
-                  <v-card-title class="teal">
-                    <strong class="subheading"
-                      >Get connected with us on social networks!</strong
-                    >
-
-                    <v-spacer></v-spacer>
-
-                    <v-btn v-for="icon in icons" :key="icon" class="mx-4" icon>
-                      <v-icon size="24px">
-                        {{ icon }}
-                      </v-icon>
-                    </v-btn>
-                  </v-card-title>
-
-                  <v-card-text class="py-2 white--text text-center">
-                    {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
-                  </v-card-text>
-                </v-card>
-              </v-footer>
+              <servicios></servicios>
+              <infograf></infograf>
+              <casos></casos>
+              <footer-v></footer-v>
             </v-sheet>
           </v-col>
         </v-row>
@@ -161,12 +65,15 @@
 </template>
 
 <script>
+import Casos from "./Casos.vue";
+import FooterV from "./FooterV.vue";
+import Infograf from "./Infograf.vue";
+import Servicios from "./Servicios.vue";
 export default {
+  components: { Servicios, Infograf, Casos, FooterV },
   name: "Inicio",
   data() {
     return {
-      elevations: [6, 12, 18],
-      icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
       items: [
         {
           src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
