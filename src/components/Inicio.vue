@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire" class="">
-   <Header> </Header>
+    <Header> </Header>
 
     <v-main class="grey lighten-3">
       <v-container>
@@ -16,30 +16,15 @@
                   transition="fade-transition"
                 ></v-carousel-item>
               </v-carousel>
-
-
-              <div>
-                <v-alert
-                  border="left"
-                  colored-border
-                  color="deep-purple accent-4"
-                  elevation="2"
-                >
-                  Aliquam eu nunc. Fusce commodo aliquam arcu. In consectetuer
-                  turpis ut velit. Nulla facilisi.. Morbi mollis tellus ac
-                  sapien. Fusce vel dui. Praesent ut ligula non mi varius
-                  sagittis. Vivamus consectetuer hendrerit lacus. Suspendisse
-                  enim turpis, dictum sed, iaculis a, condimentum nec, nisi.
-                </v-alert>
-              </div>
+              <infograf></infograf>
               <div>
                 <!--Seccion de servicios-->
                 <v-container>
+                  <h2 align="center">Nuestros Servicios</h2>
                   <servicios></servicios>
                 </v-container>
                 <!-- fin seccion de servicios-->
               </div>
-              <infograf></infograf>
               <casos></casos>
               <footer-v></footer-v>
             </v-sheet>
@@ -49,20 +34,22 @@
     </v-main>
   </v-app>
 </template>
-
+<style scoped>
+  h2{
+    font-size: 2.5rem;
+  }
+</style>
 <script>
-
-import Header from '../components/header.vue'
+import Header from "../components/header.vue";
 import Casos from "./Casos.vue";
 import FooterV from "./FooterV.vue";
 import Infograf from "./Infograf.vue";
 import Servicios from "./Servicios.vue";
 export default {
-  components: { Servicios, Infograf, Casos, FooterV ,Header},
+  components: { Servicios, Infograf, Casos, FooterV, Header },
   name: "Inicio",
   data() {
     return {
-
       elevations: [6, 12, 18],
       items: [
         {
@@ -81,11 +68,10 @@ export default {
       ],
     };
   },
-  methods:{
-    salir(){
-      this.$store.dispatch('out');
+  methods: {
+    salir() {
+      this.$store.dispatch("out");
     },
-
-  }
+  },
 };
 </script>

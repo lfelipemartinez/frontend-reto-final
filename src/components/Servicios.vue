@@ -6,13 +6,12 @@
       cols="12"
       md="4"
     >
-      <v-card class="pa-12 white" align="center" height="600" min-height="600">
+      <v-card class="pa-12 white" height="700">
         <v-img
-          src="../assets/images/servicio-de-reparacion.svg"
-          height="100"
-          width="100"
-        >
-        </v-img>
+          v-bind:src="require('../assets/images/banner-'+ index +'.jpg')"
+          height="400"
+          width="400"
+        />
         <v-card-title class="color-title">{{ element.nombre }}</v-card-title>
         <v-card-text align="center">
           <v-row class="mx-0 color-description">
@@ -54,21 +53,40 @@ export default {
   data() {
     return {
       articles: [],
+      banners: [
+        "banner-0.jpg",
+        "banner-2.jpg",
+        "banner-3.jpg",
+      ],
+      articulo:{
+        categoriaId: null,
+        nombre:null,
+        codigo: null,
+        descripcion: null,
+        estado: null,
+        id: null,
+        img: null,
+      },
     };
   },
   created() {
     Axios.get("http://localhost:3000/api/articulo/list")
       .then((response) => {
         var articles = response.data;
-        articles.forEach((element) => {
+        var i = 1;
+        articles.forEach((element,index) => {
           if (element.categoriaId === 3) {
             if (element.descripcion.length > 150) {
-              element.descripcion = element.descripcion.substr(0, 180) + '...';
+              element.descripcion = element.descripcion.substr(0, 180) + "...";
             }
-            this.articles.push(element);
+             this.articles.push(element);
+           
           }
+          
         });
-        console.log(articles);
+        
+
+        console.log(this.articles);
       })
       .catch((error) => {
         return error;
