@@ -4,14 +4,14 @@
       <v-data-table
         :headers="headers"
         :items="usuarios"
-        sort-by="nombre"
+        sort-by="id"
         class="elevation-1"
         :loading="carga"
         loading-text="Cargando..."
       >
         <template v-slot:top>
           <v-toolbar flat>
-            <v-toolbar-title>Usuarios</v-toolbar-title>
+            <v-toolbar-title>Categorias</v-toolbar-title>
             <v-divider class="mx-4" inset vertical></v-divider>
             <v-spacer></v-spacer>
             <v-dialog v-model="dialog" max-width="500px">
@@ -36,12 +36,6 @@
                     <v-row>
                       <v-col cols="12">
                         <v-text-field
-                          v-model="editedItem.id"
-                          label="ID"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12">
-                        <v-text-field
                           v-model="editedItem.nombre"
                           label="Nombre"
                         ></v-text-field>
@@ -56,6 +50,12 @@
                         <v-text-field
                           v-model="editedItem.email"
                           label="Email"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12">
+                        <v-text-field
+                          v-model="editedItem.password"
+                          label="Contraseña"
                         ></v-text-field>
                       </v-col>
                     </v-row>
@@ -131,8 +131,8 @@ export default {
         sortable: true,
         value: "nombre",
       },
-      { text: "Rol", value: "rol" },
       { text: "Email", value: "email", sortable: false },
+      { text: "Rol", value: "rol"},
       { text: "Estado", value: "estado" },
       { text: "Acciones", value: "actions", sortable: false },
     ],
@@ -143,6 +143,7 @@ export default {
       nombre: "",
       rol: "",
       email: "",
+      password:'',
       estado: 0,
     },
     defaultItem: {
@@ -150,6 +151,7 @@ export default {
       nombre: "",
       rol: "",
       email: "",
+      password:'',
       estado: 0,
     },
   }),
@@ -183,7 +185,6 @@ export default {
         })
         .then((response) => {
           this.usuarios = response.data;
-          console.log(this.usuarios);
           this.carga = false;
         })
         .catch((error) => {
@@ -270,7 +271,8 @@ export default {
               id: this.editedItem.id,
               nombre: this.editedItem.nombre,
               rol: this.editedItem.rol,
-              email: this.editItem.email,
+              email: this.editedItem.email,
+              password: this.editedItem.password,
             },
             {
               headers: {
@@ -289,11 +291,10 @@ export default {
           .post(
             "http://localhost:3000/api/usuario/add",
             {
-              id: this.editedItem.id,
-              estado: 1,
               nombre: this.editedItem.nombre,
               rol: this.editedItem.rol,
-              email: this.editItem.email,
+              email: this.editedItem.email,
+              password: this.editedItem.password,
             },
             {
               headers: {
