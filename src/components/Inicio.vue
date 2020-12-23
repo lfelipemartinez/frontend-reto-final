@@ -51,20 +51,16 @@ export default {
   name: "Inicio",
   data() {
     return {
-      elevations: [6, 12, 18],
       items: [
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
+          src: "https://www.emprendedores.es/wp-content/uploads/2020/04/coworking-1587455610.jpg",
         },
         {
           src:
-            "https://limoncomunicacion.com/wp-content/uploads/2018/12/Dise%C3%B1o-web-servicios-limoncomunicacion.com_.png",
+            "https://eleternoestudiante.com/wp-content/uploads/2020/04/cropped-plataformas-de-cursos-online-gratis.jpg",
         },
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
+          src: "https://wwwhatsnew.com/wp-content/uploads/2020/09/cursos.jpg",
         },
       ],
     };
