@@ -1,3 +1,4 @@
+<!-- inicio-->
 <template>
   <v-app id="inspire" class="">
     <Header> </Header>
@@ -26,6 +27,7 @@
                 <!-- fin seccion de servicios-->
               </div>
               <casos></casos>
+              <aliados></aliados>
               <footer-v></footer-v>
             </v-sheet>
           </v-col>
@@ -41,29 +43,26 @@
 </style>
 <script>
 import Header from "../components/header.vue";
+import Aliados from './Aliados.vue';
 import Casos from "./Casos.vue";
 import FooterV from "./FooterV.vue";
 import Infograf from "./Infograf.vue";
 import Servicios from "./Servicios.vue";
 export default {
-  components: { Servicios, Infograf, Casos, FooterV, Header },
+  components: { Servicios, Infograf, Casos, FooterV, Header, Aliados },
   name: "Inicio",
   data() {
     return {
-      elevations: [6, 12, 18],
       items: [
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
+          src: "https://www.emprendedores.es/wp-content/uploads/2020/04/coworking-1587455610.jpg",
         },
         {
           src:
-            "https://limoncomunicacion.com/wp-content/uploads/2018/12/Dise%C3%B1o-web-servicios-limoncomunicacion.com_.png",
+            "https://eleternoestudiante.com/wp-content/uploads/2020/04/cropped-plataformas-de-cursos-online-gratis.jpg",
         },
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
+          src: "https://wwwhatsnew.com/wp-content/uploads/2020/09/cursos.jpg",
         },
       ],
     };

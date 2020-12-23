@@ -12,6 +12,7 @@ const routes = [{
       public: true
     }
   },
+  //servicios item
   {
     path: '/Services_item/:id',
     name: "Services_item",

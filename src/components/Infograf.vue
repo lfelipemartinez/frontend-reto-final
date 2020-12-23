@@ -1,3 +1,4 @@
+<!--infografia -->
 <template>
  <div class="infografia">
    <div class="infografia__image">
