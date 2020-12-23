@@ -4,12 +4,20 @@ import Home from '../views/Home.vue'
 import store from '../store'
 Vue.use(VueRouter)
 
-const routes = [
-  {
+const routes = [{
     path: '/',
     name: 'Home',
     component: Home,
-    meta:{
+    meta: {
+      public: true
+    }
+  },
+  //servicios item
+  {
+    path: '/Services_item/:id',
+    name: "Services_item",
+    component:()=>import('../views/Services_item.vue'),
+    meta: {
       public: true
     }
   },
@@ -19,8 +27,8 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
-    meta:{
+    component: () => import( /* webpackChunkName: "login" */ '../views/Login.vue'),
+    meta: {
       public: true
     }
   },
@@ -30,19 +38,18 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "authv" */ '../views/AuthV.vue'),
-    meta:{
+    component: () => import( /* webpackChunkName: "authv" */ '../views/AuthV.vue'),
+    meta: {
       auth: true,
     },
-    children: [
-      {
+    children: [{
         path: 'categoria',
         name: 'Categoria',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "categoria" */ '../views/Categoria.vue'),
-        meta:{
+        component: () => import( /* webpackChunkName: "categoria" */ '../views/Categoria.vue'),
+        meta: {
           auth: true,
         },
       },
@@ -52,8 +59,8 @@ const routes = [
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "articulo" */ '../views/Articulo.vue'),
-        meta:{
+        component: () => import( /* webpackChunkName: "articulo" */ '../views/Articulo.vue'),
+        meta: {
           auth: true,
         },
       },
@@ -63,14 +70,14 @@ const routes = [
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "usuario" */ '../views/Usuario.vue'),
-        meta:{
+        component: () => import( /* webpackChunkName: "usuario" */ '../views/Usuario.vue'),
+        meta: {
           auth: true,
         },
       }
     ]
   },
- 
+
 ]
 
 const router = new VueRouter({
@@ -79,16 +86,18 @@ const router = new VueRouter({
   routes
 });
 
-router.beforeEach((to, from, next) =>{
-  if (to.matched.some(ruta => ruta.meta.public)){
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(ruta => ruta.meta.public)) {
     next();
-  }else if (to.matched.some(ruta => ruta.meta.auth)){
-    if(store.state.user){
+  } else if (to.matched.some(ruta => ruta.meta.auth)) {
+    if (store.state.user) {
       next()
-    }else{
-      next({name: 'Login'})
+    } else {
+      next({
+        name: 'Login'
+      })
     }
-  }else{
+  } else {
     next();
   }
 })

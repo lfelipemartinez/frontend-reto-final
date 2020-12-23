@@ -1,42 +1,7 @@
+<!-- inicio-->
 <template>
-  <v-app id="inspire">
-    <v-app-bar app color="white" flat class="primary">
-      <v-container class="py-0 fill-height">
-        <v-btn text :to="{ name: 'Home' }">
-          Inicio
-        </v-btn>
-
-        <v-divider class="mx-4" vertical></v-divider>
-
-        <v-spacer></v-spacer>
-
-        <v-toolbar-items class="hidden-sm-and-down">
-          <template v-if="!this.$store.state.user">
-            <v-btn text :to="{ name: 'Login' }">
-              <v-icon>
-                mdi-account
-              </v-icon>
-            </v-btn>
-
-            <v-divider vertical></v-divider>
-          </template>
-          <template v-else>
-            <v-btn text :to="{ name: 'AuthV' }">
-              <v-icon>
-                mdi-application-cog
-              </v-icon>
-            </v-btn>
-            <v-divider vertical></v-divider>
-          </template>
-          <template v-if="this.$store.state.user">
-            <v-btn icon class="mr-5" @click="salir()">
-              <v-icon>mdi-logout</v-icon>
-            </v-btn>
-            <v-divider vertical></v-divider>
-          </template>
-        </v-toolbar-items>
-      </v-container>
-    </v-app-bar>
+  <v-app id="inspire" class="">
+    <Header> </Header>
 
     <v-main class="grey lighten-3">
       <v-container>
@@ -52,8 +17,15 @@
                   transition="fade-transition"
                 ></v-carousel-item>
               </v-carousel>
-              <servicios></servicios>
               <infograf></infograf>
+              <div>
+                <!--Seccion de servicios-->
+                <v-container>
+                  <h2 align="center">Nuestros Servicios</h2>
+                  <servicios></servicios>
+                </v-container>
+                <!-- fin seccion de servicios-->
+              </div>
               <casos></casos>
               <footer-v></footer-v>
             </v-sheet>
@@ -63,17 +35,23 @@
     </v-main>
   </v-app>
 </template>
-
+<style scoped>
+  h2{
+    font-size: 2.5rem;
+  }
+</style>
 <script>
+import Header from "../components/header.vue";
 import Casos from "./Casos.vue";
 import FooterV from "./FooterV.vue";
 import Infograf from "./Infograf.vue";
 import Servicios from "./Servicios.vue";
 export default {
-  components: { Servicios, Infograf, Casos, FooterV },
+  components: { Servicios, Infograf, Casos, FooterV, Header },
   name: "Inicio",
   data() {
     return {
+      elevations: [6, 12, 18],
       items: [
         {
           src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
