@@ -4,7 +4,7 @@
       <v-data-table
         :headers="headers"
         :items="categorias"
-        sort-by="nombre"
+        sort-by="id"
         class="elevation-1"
         :loading="carga"
         loading-text="Cargando..."
