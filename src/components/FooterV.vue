@@ -5,7 +5,7 @@
         <v-row>
           <strong class="subheading">Contactenos! </strong>
           <v-card-text class="white--text pt-3">
-            <strong>Correos: </strong> 	lfelipemartinez07@gmail.com, neirydml@gmail.com, yese1094@hotmail.com, cristianymarins@gmail.com, camilobzt@gmail.com
+            <strong>Correos: </strong> Pic_service@gmail.com,Customer.pic@outlook.com
             <br>
             <strong>Telfonos: </strong> 521500500, 3103189740
             <br>

@@ -27,6 +27,7 @@
                 <!-- fin seccion de servicios-->
               </div>
               <casos></casos>
+              <aliados></aliados>
               <footer-v></footer-v>
             </v-sheet>
           </v-col>
@@ -42,12 +43,13 @@
 </style>
 <script>
 import Header from "../components/header.vue";
+import Aliados from './Aliados.vue';
 import Casos from "./Casos.vue";
 import FooterV from "./FooterV.vue";
 import Infograf from "./Infograf.vue";
 import Servicios from "./Servicios.vue";
 export default {
-  components: { Servicios, Infograf, Casos, FooterV, Header },
+  components: { Servicios, Infograf, Casos, FooterV, Header, Aliados },
   name: "Inicio",
   data() {
     return {
